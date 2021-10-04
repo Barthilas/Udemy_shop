@@ -37,3 +37,4 @@ GIT
 git status
 git init
 git add .
+git commint -m "init commit"
