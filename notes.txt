@@ -1,0 +1,39 @@
+.NET CLI
+dotnet --info (dotnet version of SDKS, runtimes w/e)
+dotnet restore (register package in .NET - done automatically by NuGet gallery)
+dotnet tool list -g (global libraries)
+dotnet tool install/update
+
+dotnet ef migrations add InitialCreate -o Data/Migrations (create db based on DbContext derived classes)
+dotnet ef database update
+
+dotnet new -l (list available templates)
+dotnet new sln (create solution)
+dotnet new webapi -o API
+dotnet sln add API
+dotnet sln list
+dotnet dev-certs https -t (generate certificates if not present and trust them automatically)
+
+//add new projects
+dotnet new classlib -o Core
+dotnet sln add Core
+cd API -> dotnet add reference ../Core
+dotnet restore (update and register references)
+
+
+Visual studio code
+CTRL+SHIFT+P acces settings and other extensions (.NET generate assets)
+CTRL+P easy navigation through files
+CTRL + . (Code help/refactor/lightbulb)
+
+
+(OMNISHARP, INTELISENSE NOT WORKING)
+Ctrl + Shift + p
+Write "OmniSharp: Select Project" and press Enter.
+Choose the solution workspace entry
+
+
+GIT
+git status
+git init
+git add .
