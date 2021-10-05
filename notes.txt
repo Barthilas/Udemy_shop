@@ -7,6 +7,10 @@ dotnet tool install/update
 dotnet ef migrations add InitialCreate -o Data/Migrations (create db based on DbContext derived classes)
 dotnet ef database update
 
+dotnet ef database drop -p Infrastructure -s API
+dotnet ef migrations remove -p Infrastructure -s API
+dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
+
 dotnet new -l (list available templates)
 dotnet new sln (create solution)
 dotnet new webapi -o API
@@ -29,7 +33,7 @@ CTRL + . (Code help/refactor/lightbulb)
 
 (OMNISHARP, INTELISENSE NOT WORKING)
 Ctrl + Shift + p
-Write "OmniSharp: Select Project" and press Enter.
+Write "OmniSharp: Select Project" and press Enter
 Choose the solution workspace entry
 
 
