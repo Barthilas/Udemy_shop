@@ -18,6 +18,7 @@ namespace API
 {
     public class Startup
     {
+        readonly string AllowSpecificOrigins = "CorsPolicy";
         //Convention, better than Windows way (public property with get)
         private readonly IConfiguration _configuration;
         public Startup(IConfiguration configuration)
@@ -36,6 +37,11 @@ namespace API
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
+            services.AddCors(opt => {
+                opt.AddPolicy(name: AllowSpecificOrigins, policy => {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                });
+            });
 
         }
 
@@ -58,6 +64,7 @@ namespace API
             app.UseRouting();
             app.UseStaticFiles(); //wwwroot serve image
 
+            app.UseCors(AllowSpecificOrigins);
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
