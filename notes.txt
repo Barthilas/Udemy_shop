@@ -42,3 +42,7 @@ git status
 git init
 git add .
 git commint -m "init commit"
+
+Angular
+ng new client (create new project in folder named client)
+cd client -> ng serve (start the Angular app)
