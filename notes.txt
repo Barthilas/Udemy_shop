@@ -48,3 +48,10 @@ Angular
 - update the angular.json (build/styles) -> namely add bootstrap, fontawesome...
 ng new client (create new project in folder named client)
 cd client -> ng serve (start the Angular app)
+
+ng g (generate entities.. like component ex: ng g c nav-bar)
+cd src/app (generaly)
+--skip tests (otherwise true) --------> ng g c nav-bar --skip-tests
+
+STYLING TIPS
+Basket with a number -> parent must be relative, child is position: absolute.
