@@ -44,6 +44,8 @@ git add .
 git commint -m "init commit"
 
 Angular
+[value] receiving
+(click) do smth, event...
 -preferable to install with npm, but ng add can work aswell (ngx bootstrap) for normal bootstrap check ngx version.
 - update the angular.json (build/styles) -> namely add bootstrap, fontawesome...
 ng new client (create new project in folder named client)
