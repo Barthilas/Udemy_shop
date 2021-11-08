@@ -25,6 +25,8 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
+    //disable the $event.target errors in template or use any()
+    "strictDomEventTypes": false, 
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true

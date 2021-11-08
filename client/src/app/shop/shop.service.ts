@@ -4,6 +4,7 @@ import { IBrand } from '../shared/models/brands';
 import { IPagination } from '../shared/models/pagination';
 import { IType } from '../shared/models/productType';
 import {map} from 'rxjs/operators';
+import { ShopParams } from '../shared/models/shopParams';
 
 //services are decorated with the Injectable decorator
 //Singletons
@@ -16,18 +17,19 @@ export class ShopService {
 
   constructor(private https: HttpClient) { }
 
-  getProducts(brandId?: number, typeId?: number, sort?: string)  {
+  getProducts(shopParams: ShopParams)  {
     let params = new HttpParams();
-    if(brandId) {
-      params = params.append('brandId', brandId.toString());
+    if(shopParams.brandId !== 0) {
+      params = params.append('brandId', shopParams.brandId.toString());
     }
-    if(typeId)
+    if(shopParams.typeId !== 0)
     {
-      params = params.append('typeId', typeId.toString());
+      params = params.append('typeId', shopParams.typeId.toString());
     }
-    if(sort) {
-      params = params.append('sort', sort);
-    }
+    params = params.append('sort', shopParams.sort);
+    params = params.append('pageIndex', shopParams.pageNumber.toString());
+    params = params.append('pageSize', shopParams.pageSize.toString());
+
 
     //pipe -> chain multiple rxjs operators.
     return this.https.get<IPagination>(this.baseUrl + 'products', {observe: 'response', params})
