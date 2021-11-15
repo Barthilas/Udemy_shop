@@ -3,22 +3,23 @@ import { CommonModule } from '@angular/common';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
 import { PagerComponent } from './components/pager/pager.component';
-
-
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
     PagingHeaderComponent,
-    PagerComponent
+    PagerComponent,
   ],
   imports: [
     CommonModule,
-    PaginationModule.forRoot() //forRoot - own providers array, needs to be injected into rootModule at startup, acting as a Singleton.
+    PaginationModule.forRoot(), //forRoot - own providers array, needs to be injected into rootModule at startup, acting as a Singleton.
+    CarouselModule.forRoot()
   ],
   exports: [
     PaginationModule,
     PagingHeaderComponent,
-    PagerComponent
+    PagerComponent,
+    CarouselModule
   ]
 })
 export class SharedModule { }

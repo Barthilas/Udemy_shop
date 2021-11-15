@@ -14,7 +14,7 @@ export class ShopComponent implements OnInit {
 
   //set to false if not sure component is drawn or not. (IF)
   //Not realiant on dynamic activity
-  @ViewChild('search', {static: true}) searchTerm: ElementRef
+  @ViewChild('search', {static: false}) searchTerm: ElementRef
   products: IProduct[];
   brands: IBrand[];
   types: IType[];
