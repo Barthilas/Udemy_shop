@@ -63,3 +63,11 @@ Basket with a number -> parent must be relative, child is position: absolute.
 
 DOCKER
 docker-compose up --detach
+
+LAZY Loading SIMPLE GUIDE
+1) app routing - 
+{path: 'basket', loadChildren: () => import('./basket/basket.module').then(mod => mod.BasketModule),
+  data:{breadcrumb: 'Basket'}},
+2) basket routing module - const Routes, Imports RouterModule.forChild(routes), exports: RouterModule
+3) basket module - import basket routing module
+4) some template... routerLink="/basket"
