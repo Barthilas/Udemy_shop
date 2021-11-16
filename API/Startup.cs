@@ -1,18 +1,14 @@
-using System.Linq;
-using API.Errors;
 using API.Helpers;
 using API.Middleware;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using API.Extensions;
+using StackExchange.Redis;
 
 namespace API
 {
@@ -29,12 +25,16 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Make class injectable, singleton.. transient..
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_configuration.GetConnectionString("DefaultConnection")));
+            
+            services.AddSingleton<IConnectionMultiplexer>(c => {
+                var configuration = ConfigurationOptions.Parse(_configuration.GetConnectionString("Redis"),
+                ignoreUnknown: true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
+            
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
             services.AddCors(opt => {

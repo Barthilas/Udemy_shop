@@ -60,3 +60,6 @@ ng g c shop --flat --skip-tests (component without tests and without folder)
 
 STYLING TIPS
 Basket with a number -> parent must be relative, child is position: absolute.
+
+DOCKER
+docker-compose up --detach
