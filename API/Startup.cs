@@ -40,6 +40,7 @@ namespace API
             });
             
             services.AddApplicationServices();
+            services.AddIdentityServices(_configuration);
             services.AddSwaggerDocumentation();
             services.AddCors(opt => {
                 opt.AddPolicy(name: AllowSpecificOrigins, policy => {
@@ -69,6 +70,8 @@ namespace API
             app.UseStaticFiles(); //wwwroot serve image
 
             app.UseCors(AllowSpecificOrigins);
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
