@@ -8,6 +8,7 @@ dotnet ef migrations add InitialCreate -o Data/Migrations (create db based on Db
 dotnet ef database update
 
 dotnet ef database drop -p Infrastructure -s API
+dotnet ef database drop -p Infrastructure -s API -c StoreContext
 dotnet ef migrations remove -p Infrastructure -s API
 dotnet ef migrations add InitialCreate -p Infrastructure -s API -o Data/Migrations
 dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations (Identity FW)
