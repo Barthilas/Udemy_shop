@@ -1,4 +1,5 @@
-<div class="table-responsive">
+<ng-container *ngIf="basket$ | async">
+  <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -58,3 +59,4 @@
         </tbody>
     </table>
 </div>
+</ng-container>
