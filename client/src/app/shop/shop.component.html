@@ -7,7 +7,8 @@
             <!-- disable the fullTemplateTypeCheck -> or change in tsConfig, fillTemplateTypeCheck. -->
             <select class="custom-select mb-4" (change)="onSortSelected($any($event.target).value)">
                 <option *ngFor="let sort of sortOptions"
-                    [value]="sort.value">
+                    [value]="sort.value"
+                    [selected]="shopParams.sort === sort.value">
                     {{sort.name}}
                 </option>
             </select>
@@ -15,7 +16,7 @@
 
             <h5 class="text-warning ml-3">Brands</h5>
             <ul class="list-group my-3">
-                <li class="list-group-item" 
+                <li class="list-group-item"
                 *ngFor="let brand of brands"
                 [class.active]="brand.id === this.shopParams.brandId"
                 [value]="brand.id"
@@ -36,14 +37,14 @@
               </ul>
             </ng-container>
         </section>
-        
+
         <section class="col-9">
             <div class="d-flex justify-content-between align-items-center pb-2">
 
                 <app-paging-header
                     [totalCount]="totalCount"
                     [pageSize]="this.shopParams.pageSize"
-                    [pageNumber]="this.shopParams.pageNumber"            
+                    [pageNumber]="this.shopParams.pageNumber"
                 ></app-paging-header>
 
                 <div class="form-inline" *ngIf="products">
@@ -52,7 +53,7 @@
                     <button (click)="onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-4 mb-4" *ngFor="let item of products">
                   <app-product-item [product]="item"></app-product-item>
@@ -65,6 +66,7 @@
                     [pageSize]="shopParams.pageSize"
                     [totalCount]="totalCount"
                     (pageChanged)="onPageChanged($event)"
+                    [pageNumber]="shopParams.pageNumber"
                 >
                 </app-pager>
 
