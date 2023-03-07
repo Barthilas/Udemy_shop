@@ -7,6 +7,7 @@ import {map} from 'rxjs/operators';
 import { ShopParams } from '../shared/models/shopParams';
 import { IProduct } from '../shared/models/product';
 import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 //services are decorated with the Injectable decorator
 //Singletons
@@ -15,7 +16,7 @@ import { of } from 'rxjs';
 })
 export class ShopService {
 
-  baseUrl = "https://localhost:5001/api/";
+  baseUrl = environment.apiUrl;
   //caching arrays
   productCache = new Map();
   products: IProduct[] = []

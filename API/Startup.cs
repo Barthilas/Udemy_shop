@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using API.Extensions;
 using StackExchange.Redis;
 using Infrastructure.Identity;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace API
 {
@@ -68,6 +70,11 @@ namespace API
 
             app.UseRouting();
             app.UseStaticFiles(); //wwwroot serve image
+            app.UseStaticFiles(new StaticFileOptions {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "Content")
+                ), RequestPath = "/content"
+            });
 
             app.UseCors(AllowSpecificOrigins);
             
@@ -79,6 +86,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
